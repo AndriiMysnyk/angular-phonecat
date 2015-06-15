@@ -4,10 +4,25 @@
       <!--Sidebar content-->
 
       Search: <input ng-model="query">
+      <br>
       Sort by:
       <select ng-model="orderProp">
         <option value="name">Alphabetical</option>
         <option value="age">Newest</option>
+      </select>
+      <br>
+      Carrier:
+      <select ng-model="carrierProp">
+        <option value="all">- All -</option>
+        <option value="none">No-contract</option>
+        <option value="AT&T">AT&T</option>
+        <option value="Cellular South">Cellular South</option>
+        <option value="Dell">Dell</option>
+        <option value="Best Buy">Best Buy</option>
+        <option value="Verizon">Verizon</option>
+        <option value="T-Mobile">T-Mobile</option>
+        <option value="US Cellular">US Cellular</option>
+        <option value="Sprint">Sprint</option>
       </select>
 
     </div>
@@ -15,11 +30,12 @@
       <!--Body content-->
 
       <ul class="phones">
-        <li ng-repeat="phone in phones | filter:query | orderBy:orderProp"
+        <li ng-repeat="phone in phones | filter:query | filter:filterPhones | orderBy:orderProp"
             class="thumbnail phone-listing">
           <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
           <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
           <p>{{phone.snippet}}</p>
+          <p>{{phone.carrier}}</p>
         </li>
       </ul>
 
